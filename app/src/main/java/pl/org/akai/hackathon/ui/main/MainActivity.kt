@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
 		b.bottomNav.menu.forEach {
 			val icon: IIcon = when (it.itemId) {
-				R.id.menu_one -> CommunityMaterial.Icon2.cmd_lightbulb_outline
-				R.id.menu_two -> CommunityMaterial.Icon.cmd_code_json
-				R.id.menu_three -> CommunityMaterial.Icon3.cmd_server
+				R.id.menu_one -> CommunityMaterial.Icon.cmd_account_search_outline
+				R.id.menu_two -> CommunityMaterial.Icon.cmd_account_heart_outline
+				R.id.menu_three -> CommunityMaterial.Icon.cmd_account_circle_outline
 				else -> CommunityMaterial.Icon2.cmd_help
 			}
 			it.icon = IconicsDrawable(this, icon).apply {
