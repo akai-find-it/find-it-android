@@ -32,6 +32,9 @@ class UserFragment : BaseFragment<UserFragmentBinding>(UserFragmentBinding::infl
 			lifecycleScope.launch(Dispatchers.IO) {
 				vm.loadData()
 			}
+		} else {
+			vm.isLoading.postValue(false)
+			vm.isLoaded.postValue(true)
 		}
 
 		vm.token.observe(viewLifecycleOwner) {
