@@ -10,21 +10,21 @@ import pl.org.akai.hackathon.data.model.LoginData
 import pl.org.akai.hackathon.data.model.User
 import pl.org.akai.hackathon.data.model.UserBase
 import pl.org.akai.hackathon.ui.base.BaseViewModel
+import pl.org.akai.hackathon.ui.base.DataViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class UserViewModel @Inject constructor(
 	private val apiService: ApiService,
-) : BaseViewModel() {
+) : DataViewModel<UserBase?>(null) {
 
-	val user = MutableLiveData<UserBase?>(null)
 	val token = MutableLiveData<String?>(null)
 
 	var email = ""
 	var password = ""
 
-	fun loadUser() = viewModelScope.launch(Dispatchers.IO) {
-		user.postValue(apiService.getMe())
+	override suspend fun loadDataImpl(): UserBase {
+		return apiService.getMe()
 	}
 
 	fun login() {
@@ -32,7 +32,7 @@ class UserViewModel @Inject constructor(
 			try {
 				val data = apiService.login(LoginData(email, password))
 				token.postValue(data.access)
-				loadUser()
+				loadData()
 			} catch (e: Exception) {}
 		}
 	}

@@ -11,74 +11,112 @@
 			type="pl.org.akai.hackathon.ui.user.UserViewModel" />
 	</data>
 
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-		<com.google.android.material.imageview.ShapeableImageView
-			android:id="@+id/imageView"
-			android:layout_width="128dp"
-			android:layout_height="128dp"
-			android:layout_marginTop="32dp"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			app:srcCompat="@drawable/profile" />
-
-		<TextView
-			android:id="@+id/textView2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="16dp"
-			android:text="@{vm.user == null ? @string/not_logged_in : vm.user.firstName}"
-			android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/imageView"
-			tools:text="Piotr Informatyczny" />
-
-		<LinearLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="32dp"
-			android:isVisible="@{vm.user == null}"
-			android:orientation="vertical"
-			app:layout_constraintTop_toBottomOf="@+id/textView2">
+			android:layout_height="match_parent"
+			android:isVisible="@{vm.isLoaded()}">
 
-			<com.google.android.material.textfield.TextInputLayout
-				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+			<com.google.android.material.imageview.ShapeableImageView
+				android:id="@+id/imageView"
+				android:layout_width="128dp"
+				android:layout_height="128dp"
+				android:layout_marginTop="32dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/profile" />
 
-				<com.google.android.material.textfield.TextInputEditText
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:hint="E-mail"
-					android:text="@={vm.email}" />
-			</com.google.android.material.textfield.TextInputLayout>
+			<TextView
+				android:id="@+id/textView2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:text="@{vm.data == null ? @string/not_logged_in : vm.data.firstName}"
+				android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/imageView"
+				tools:text="Piotr Informatyczny" />
 
-			<com.google.android.material.textfield.TextInputLayout
-				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="16dp">
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="32dp"
+				android:isVisible="@{vm.data == null}"
+				android:orientation="vertical"
+				app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-				<com.google.android.material.textfield.TextInputEditText
+				<com.google.android.material.textfield.TextInputLayout
+					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+					<com.google.android.material.textfield.TextInputEditText
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:hint="E-mail"
+						android:text="@={vm.email}" />
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:hint="Hasło"
-					android:inputType="textPassword"
-					android:text="@={vm.password}" />
-			</com.google.android.material.textfield.TextInputLayout>
+					android:layout_marginTop="16dp">
 
-			<Button
+					<com.google.android.material.textfield.TextInputEditText
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:hint="Hasło"
+						android:inputType="textPassword"
+						android:text="@={vm.password}" />
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<Button
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="16dp"
+					android:onClick="@{() -> vm.login()}"
+					android:text="Zaloguj się" />
+			</LinearLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<ProgressBar
+			android:id="@+id/progressBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:isVisible="@{vm.isLoading()}" />
+
+		<LinearLayout
+			android:id="@+id/errorLayout"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:isVisible="@{vm.isError()}"
+			android:orientation="vertical">
+
+			<com.mikepenz.iconics.view.IconicsImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="16dp"
-				android:onClick="@{() -> vm.login()}"
-				android:text="Zaloguj się" />
+				app:iiv_color="?android:textColorPrimary"
+				app:iiv_icon="cmd-cloud-off-outline"
+				app:iiv_size="64dp" />
+
+			<Button
+				style="@style/Widget.Material3.Button.OutlinedButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:onClick="@{() -> vm.refresh()}"
+				android:text="Spróbuj ponownie" />
 		</LinearLayout>
-	</androidx.constraintlayout.widget.ConstraintLayout>
+	</FrameLayout>
 </layout>

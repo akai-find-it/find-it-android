@@ -18,7 +18,7 @@
 		<androidx.constraintlayout.widget.ConstraintLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:isVisible="@{!vm.isLoading() &amp;&amp; vm.error == null}">
+			android:isVisible="@{vm.isLoaded()}">
 
 			<ImageView
 				android:id="@+id/imageView2"
@@ -92,7 +92,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:isVisible="@{vm.error != null}"
+			android:isVisible="@{vm.isError()}"
 			android:orientation="vertical">
 
 			<com.mikepenz.iconics.view.IconicsImageView
@@ -108,7 +108,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="24dp"
-				android:onClick="@{() -> vm.onRefresh()}"
+				android:onClick="@{() -> vm.refresh()}"
 				android:text="Spróbuj ponownie" />
 		</LinearLayout>
 	</FrameLayout>

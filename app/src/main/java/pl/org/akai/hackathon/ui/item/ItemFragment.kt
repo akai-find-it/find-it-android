@@ -21,6 +21,7 @@ class ItemFragment : BaseFragment<ItemFragmentBinding>(ItemFragmentBinding::infl
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		b.vm = vm
 		vm.id = args.id
 
 		lifecycleScope.launch(Dispatchers.IO) {

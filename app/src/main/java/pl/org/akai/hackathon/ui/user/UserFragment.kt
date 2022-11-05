@@ -7,7 +7,10 @@ import androidx.core.content.edit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.databinding.UserFragmentBinding
 import pl.org.akai.hackathon.ui.base.BaseFragment
 import pl.org.akai.hackathon.ui.base.BaseViewModel
@@ -26,7 +29,9 @@ class UserFragment : BaseFragment<UserFragmentBinding>(UserFragmentBinding::infl
 		val token = prefs.getString("token", null)
 
 		if (token != null) {
-			vm.loadUser()
+			lifecycleScope.launch(Dispatchers.IO) {
+				vm.loadData()
+			}
 		}
 
 		vm.token.observe(viewLifecycleOwner) {

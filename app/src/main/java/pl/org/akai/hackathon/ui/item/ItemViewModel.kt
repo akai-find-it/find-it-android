@@ -19,8 +19,4 @@ class ItemViewModel @Inject constructor(
 	override suspend fun loadDataImpl(): LostItem {
 		return apiService.getLostItem(id)
 	}
-
-	fun onRefresh() = viewModelScope.launch(Dispatchers.IO) {
-		loadData()
-	}
 }

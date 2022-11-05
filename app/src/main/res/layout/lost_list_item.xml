@@ -5,7 +5,9 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+
 		<import type="java.time.format.DateTimeFormatter" />
+
 		<variable
 			name="item"
 			type="pl.org.akai.hackathon.data.model.LostItem" />
@@ -15,7 +17,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginHorizontal="16dp"
-		android:layout_marginTop="16dp">
+		android:layout_marginTop="8dp"
+		android:background="?selectableItemBackground"
+		android:layout_marginBottom="8dp">
 
 		<TextView
 			android:id="@+id/title"
@@ -28,7 +32,7 @@
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Smartfon nokia 3310" />
 
-		<TextView
+		<com.mikepenz.iconics.view.IconicsTextView
 			android:id="@+id/category"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
