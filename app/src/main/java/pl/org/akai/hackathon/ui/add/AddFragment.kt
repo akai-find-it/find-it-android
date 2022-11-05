@@ -14,6 +14,8 @@ import pl.org.akai.hackathon.databinding.AddFragmentBinding
 import pl.org.akai.hackathon.ext.toISODate
 import pl.org.akai.hackathon.ext.toLocalDate
 import pl.org.akai.hackathon.ui.base.BaseFragment
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate) {
@@ -26,6 +28,7 @@ class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate
 		b.vm = vm
 		val model = AddModel()
 		b.model = model
+		b.date.setText(LocalDate.now().format(DateTimeFormatter.ISO_DATE))
 		val datePicker =
 			MaterialDatePicker.Builder.datePicker()
 				.setTitleText("Select date")

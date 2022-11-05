@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Category>>(
-	emptyList()
+	listOf(Category(0, "Ładowanie kategorii..."))
 ) {
 
 	private var _list: LiveData<Array<String>> = Transformations.map(data) {
