@@ -11,11 +11,13 @@ class LostListPagingSource(
 
 	override suspend fun load(params: LoadParams<Int>): LoadResult<Int, LostItem> {
 		return try {
-			val (data, paging) = apiService.getLostItemList()
+			val page = params.key ?: 1
+			val perPage = params.loadSize
+			val data = apiService.getLostItemList(page, perPage)
 			LoadResult.Page(
-				data = data,
-				prevKey = if (paging.currentPage == 1) null else paging.currentPage,
-				nextKey = if (paging.currentPage == paging.lastPage) null else paging.currentPage + 1,
+				data = data.results,
+				prevKey = if (data.prevPage == null) null else page,
+				nextKey = if (data.nextPage == null) null else page + 1,
 			)
 		} catch (e: Exception) {
 			LoadResult.Error(e)

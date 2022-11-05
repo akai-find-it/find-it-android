@@ -1,14 +1,15 @@
 package pl.org.akai.hackathon.data.api
 
+import com.squareup.moshi.Json
+
 data class ApiList<T>(
-	val data: List<T>,
-	val paging: Paging,
-) {
-	data class Paging(
-		val currentPage: Int,
-		val lastPage: Int,
-		val perPage: Int,
-		val totalCount: Int,
-	)
-}
+	val results: List<T>,
+
+	@Json(name = "count")
+	val totalCount: Int,
+	@Json(name = "next")
+	val nextPage: String?,
+	@Json(name = "previous")
+	val prevPage: String?,
+)
 
