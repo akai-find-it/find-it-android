@@ -30,6 +30,7 @@ class UserFragment : BaseFragment<UserFragmentBinding>(UserFragmentBinding::infl
 		}
 
 		vm.token.observe(viewLifecycleOwner) {
+			it ?: return@observe
 			requireContext().getSharedPreferences("user", Context.MODE_PRIVATE).edit {
 				putString("token", it)
 			}
