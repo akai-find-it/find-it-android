@@ -13,7 +13,8 @@
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:background="?selectableItemBackground">
 
 		<com.google.android.material.imageview.ShapeableImageView
 			android:id="@+id/imageView"
@@ -28,13 +29,13 @@
 		<TextView
 			android:layout_width="0dp"
 			android:layout_height="64dp"
-			android:textSize="24dp"
 			android:layout_margin="16dp"
 			android:gravity="center_vertical"
+			android:text="@{chatMessage.userName}"
+			android:textSize="24dp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toEndOf="@+id/imageView"
 			app:layout_constraintTop_toTopOf="parent"
-			android:text="@{chatMessage.userName}"
 			tools:text="Jan nowak" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>

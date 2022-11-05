@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class ChatMessage(
 	@PrimaryKey(autoGenerate = true)
-	val id: Int,
-	val userId: String,
+	val id: Int = 0,
+	val userId: Int,
 	val userName: String,
 	val isSent: Boolean,
 	val text: String,

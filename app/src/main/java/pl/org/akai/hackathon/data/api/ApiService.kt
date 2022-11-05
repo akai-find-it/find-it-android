@@ -36,18 +36,18 @@ interface ApiService {
 	suspend fun addLostItem(
 		@Body
 		addModel: AddModel,
-	)
+	): LostItemBase
 
-	@POST("api/v1/lost-items/{id}/answers")
-	suspend fun addAnswers(
+	@POST("api/v1/lost-items/{id}/answers/new")
+	suspend fun addAnswer(
 		@Path("id") itemId: Int,
-		@Body answers: List<AddModel.Answer>,
+		@Body answer: AddModel.Answer,
 	)
 
-	@POST("api/v1/lost-items/{id}/guesses")
+	@POST("api/v1/lost-items/{id}/guesses/many")
 	suspend fun addGuesses(
 		@Path("id") itemId: Int,
-		@Body answers: List<AddModel.Answer>,
+		@Body answers: List<AddModel.Guess>,
 	)
 
 	@GET("api/v1/lost-items/{id}")
@@ -68,5 +68,11 @@ interface ApiService {
 	@POST("api/v1/notification/token/")
 	suspend fun sendPushToken(
 		@Body token: TokenRequest,
+	)
+
+	@POST("api/v1/chat/{id}")
+	suspend fun chatSend(
+		@Path("id") userId: Int,
+		@Body message: ChatMessage,
 	)
 }

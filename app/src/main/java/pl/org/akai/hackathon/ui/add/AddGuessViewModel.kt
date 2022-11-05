@@ -13,7 +13,7 @@ import pl.org.akai.hackathon.ui.base.DataViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AddGuessViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Pair<Pair<Int, Question>, AddModel.Answer>>>(
+class AddGuessViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Pair<Pair<Int, Question>, AddModel.Guess>>>(
 	emptyList()
 ) {
 	var itemId = 0
@@ -25,12 +25,13 @@ class AddGuessViewModel @Inject constructor(private var apiService: ApiService) 
 		_navigateBack.value = null
 	}
 
-	override suspend fun loadDataImpl(): List<Pair<Pair<Int, Question>, AddModel.Answer>> =
-		apiService.getAnsweredList(itemId).map { Pair(it.answerId to it.question, AddModel.Answer(it.question.id, "")) }
+	override suspend fun loadDataImpl(): List<Pair<Pair<Int, Question>, AddModel.Guess>> =
+		apiService.getAnsweredList(itemId).map { Pair(it.answerId to it.question, AddModel.Guess(it.question.id, "")) }
 
 	fun add(id: Int) {
 		viewModelScope.launch(Dispatchers.IO) {
 			apiService.addGuesses(id, data.value?.map { it.second } ?: mutableListOf())
+			_navigateBack.value = true
 		}
 	}
 }

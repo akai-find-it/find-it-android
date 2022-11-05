@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.org.akai.hackathon.R
 import pl.org.akai.hackathon.data.model.ChatMessage
 import pl.org.akai.hackathon.databinding.ChatListItemBinding
+import pl.org.akai.hackathon.ext.onClick
 
-class ChatListAdapter :
-	ListAdapter<ChatMessage, ChatListAdapter.ViewHolder>(QuestionDiffCallback()) {
+class ChatListAdapter(
+	private val onClick: (message: ChatMessage) -> Unit,
+) : ListAdapter<ChatMessage, ChatListAdapter.ViewHolder>(QuestionDiffCallback()) {
 
 	class ViewHolder(val binding: ChatListItemBinding) :
 		RecyclerView.ViewHolder(binding.root) {
@@ -35,6 +37,9 @@ class ChatListAdapter :
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		holder.binding.also {
 			it.chatMessage = getItem(position)
+			it.root.onClick {
+				onClick(getItem(position))
+			}
 		}
 	}
 }

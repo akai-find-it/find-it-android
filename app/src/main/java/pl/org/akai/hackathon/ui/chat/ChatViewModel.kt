@@ -4,15 +4,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import pl.org.akai.hackathon.data.AppDb
 import pl.org.akai.hackathon.data.api.ApiService
 import pl.org.akai.hackathon.data.model.ChatMessage
-import pl.org.akai.hackathon.ui.base.DataViewModel
+import pl.org.akai.hackathon.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatListViewModel @Inject constructor(
-	private val appDb: AppDb,
-) : DataViewModel<List<ChatMessage>>(emptyList()) {
+class ChatViewModel @Inject constructor(
+	private val apiService: ApiService,
+	val appDb: AppDb,
+) : BaseViewModel() {
 
-	override suspend fun loadDataImpl(): List<ChatMessage> {
-		return appDb.chatDao().getAll()
+	suspend fun sendMessage(userId: Int, message: ChatMessage) {
+		apiService.chatSend(userId, message)
 	}
 }

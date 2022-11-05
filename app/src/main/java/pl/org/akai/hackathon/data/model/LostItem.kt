@@ -15,3 +15,9 @@ data class LostItem(
 	@Json(name = "created_at")
 	val createdAt: ZonedDateTime,
 )
+
+data class LostItemBase(
+	val id: Int,
+	val title: String,
+	val description: String,
+)

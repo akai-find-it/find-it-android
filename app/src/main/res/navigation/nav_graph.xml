@@ -44,7 +44,11 @@
 	<fragment
 		android:id="@+id/userFragment"
 		android:name="pl.org.akai.hackathon.ui.user.UserFragment"
-		android:label="" />
+		android:label="" >
+		<action
+			android:id="@+id/action_userFragment_to_chatListFragment"
+			app:destination="@id/chatListFragment" />
+	</fragment>
 	<fragment
 		android:id="@+id/itemFragment"
 		android:name="pl.org.akai.hackathon.ui.item.ItemFragment"
@@ -55,13 +59,36 @@
 		<action
 			android:id="@+id/action_itemFragment_to_addGuessFragment"
 			app:destination="@id/addGuessFragment" />
+		<action
+			android:id="@+id/action_itemFragment_to_chatFragment"
+			app:destination="@id/chatFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/addGuessFragment"
 		android:name="pl.org.akai.hackathon.ui.add.AddGuessFragment"
-		android:label="AddGuessFragment">
+		android:label="">
 		<argument
 			android:name="itemId"
 			app:argType="integer" />
+	</fragment>
+	<fragment
+		android:id="@+id/chatFragment"
+		android:name="pl.org.akai.hackathon.ui.chat.ChatFragment"
+		android:label="">
+		<argument
+			android:name="userId"
+			app:argType="integer" />
+		<argument
+			android:name="userName"
+			app:argType="string" />
+	</fragment>
+	<fragment
+		android:id="@+id/chatListFragment"
+		android:name="pl.org.akai.hackathon.ui.chat.ChatListFragment"
+		android:label="">
+
+		<action
+			android:id="@+id/action_chatListFragment_to_chatFragment"
+			app:destination="@id/chatFragment" />
 	</fragment>
 </navigation>

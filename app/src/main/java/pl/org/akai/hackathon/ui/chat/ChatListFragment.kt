@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,12 @@ class ChatListFragment : BaseFragment<ChatListFragmentBinding>(ChatListFragmentB
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val adapter = ChatListAdapter()
+		val adapter = ChatListAdapter() {
+			findNavController().navigate(ChatListFragmentDirections.actionChatListFragmentToChatFragment(
+				userId = it.userId,
+				userName = it.userName,
+			))
+		}
 		b.list.adapter = adapter
 		b.list.layoutManager = LinearLayoutManager(context)
 
@@ -29,6 +35,5 @@ class ChatListFragment : BaseFragment<ChatListFragmentBinding>(ChatListFragmentB
 		lifecycleScope.launch(Dispatchers.IO) {
 			vm.loadData()
 		}
-
 	}
 }

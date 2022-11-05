@@ -11,8 +11,8 @@
 			type="pl.org.akai.hackathon.data.model.Question" />
 
 		<variable
-			name="answer"
-			type="pl.org.akai.hackathon.data.model.AddModel.Answer" />
+			name="guess"
+			type="pl.org.akai.hackathon.data.model.AddModel.Guess" />
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,7 @@
 			<com.google.android.material.textfield.TextInputEditText
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="@={answer.value}" />
+				android:text="@={guess.value}" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 

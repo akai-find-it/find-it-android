@@ -37,7 +37,12 @@ class AddAnswerViewModel @Inject constructor(private var apiService: ApiService)
 				LocalDate.ofEpochDay(date),
 				data.value?.map { it.second }?.toMutableList() ?: mutableListOf()
 			)
-			apiService.addLostItem(model)
+			val lostItem = apiService.addLostItem(model)
+			for (answer in model.answers) {
+				if (answer.value.isBlank())
+					continue
+				apiService.addAnswer(lostItem.id, answer)
+			}
 			_navigateBack.value = true
 		}
 	}

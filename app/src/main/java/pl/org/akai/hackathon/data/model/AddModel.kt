@@ -15,6 +15,10 @@ data class AddModel(
 ) {
 	data class Answer(
 		val question: Int,
-		var answer: String,
+		var value: String,
+	)
+	data class Guess(
+		val answer: Int,
+		var value: String,
 	)
 }

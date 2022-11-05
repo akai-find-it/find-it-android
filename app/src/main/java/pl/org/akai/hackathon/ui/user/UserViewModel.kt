@@ -36,4 +36,8 @@ class UserViewModel @Inject constructor(
 			} catch (e: Exception) {}
 		}
 	}
+
+	fun onMessagesClick() {
+		navigate(UserFragmentDirections.actionUserFragmentToChatListFragment())
+	}
 }

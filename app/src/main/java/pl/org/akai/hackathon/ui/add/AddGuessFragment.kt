@@ -21,7 +21,7 @@ class AddGuessFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragmen
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		val adapter = AddAnswerAdapter()
+		val adapter = AddGuessAdapter()
 		b.list.adapter = adapter
 		b.list.layoutManager = LinearLayoutManager(context)
 		b.guess = true

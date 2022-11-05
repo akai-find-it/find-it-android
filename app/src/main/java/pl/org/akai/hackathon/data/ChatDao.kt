@@ -9,7 +9,7 @@ import pl.org.akai.hackathon.data.model.ChatMessage
 @Dao
 interface ChatDao {
 	@Query("SELECT * FROM chatmessage GROUP BY userId")
-	fun getAll(): LiveData<List<ChatMessage>>
+	suspend fun getAll(): List<ChatMessage>
 
 	@Query("SELECT * FROM chatmessage WHERE userId = :userId")
 	fun getByPersonId(userId: Int): LiveData<List<ChatMessage>>
