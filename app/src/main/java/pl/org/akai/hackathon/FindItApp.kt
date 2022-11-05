@@ -33,7 +33,7 @@ class FindItApp : Application(), CoroutineScope {
 	fun sendPushToken(token: String) = launch {
 		try {
 			val nm = NetworkModule()
-			val api = nm.provideFindItApi(nm.provideRetrofit(nm.provideOkHttpClient(), nm.provideMoshi()))
+			val api = nm.provideFindItApi(nm.provideRetrofit(nm.provideOkHttpClient(this@FindItApp), nm.provideMoshi()))
 			api.sendPushToken(TokenRequest(token))
 		} catch (e: Exception) {
 			e.printStackTrace()

@@ -1,5 +1,6 @@
 package pl.org.akai.hackathon.di
 
+import android.content.Context
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -27,8 +28,19 @@ class NetworkModule {
 
 	@Singleton
 	@Provides
-	fun provideOkHttpClient(): OkHttpClient =
+	fun provideOkHttpClient(context: Context): OkHttpClient =
 		OkHttpClient.Builder()
+			.addInterceptor {
+				val prefs = context.getSharedPreferences("user", Context.MODE_PRIVATE)
+				val token = prefs.getString("token", null)
+				if (token != null) {
+					return@addInterceptor it.proceed(it.request()
+						.newBuilder()
+						.addHeader("Authorization", "Bearer $token")
+						.build())
+				}
+				it.proceed(it.request())
+			}
 			.build()
 
 	@Singleton

@@ -44,6 +44,9 @@ interface ApiService {
 		data: LoginData,
 	): LoginData.Response
 
+	@GET("users/me/")
+	suspend fun getMe(): UserBase
+
 	@POST("api/v1/notification/")
 	suspend fun sendPushToken(
 		@Body token: TokenRequest,

@@ -5,7 +5,7 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
-
+		<import type="java.time.format.DateTimeFormatter" />
 		<variable
 			name="item"
 			type="pl.org.akai.hackathon.data.model.LostItem" />
@@ -25,6 +25,7 @@
 			android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
 			app:layout_constraintEnd_toStartOf="@+id/date"
 			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
 			tools:text="Smartfon nokia 3310" />
 
 		<TextView
@@ -39,7 +40,9 @@
 			android:id="@+id/date"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:text="@{item.foundAt.format(DateTimeFormatter.ISO_DATE)}"
 			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
 			tools:text="2022-11-05" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

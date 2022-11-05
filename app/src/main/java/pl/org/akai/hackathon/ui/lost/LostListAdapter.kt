@@ -27,5 +27,7 @@ class LostListAdapter(
 		holder.b.root.onClick {
 			onItemClick(item)
 		}
+
+		holder.b.category.text = "{cmd-shape} ${item.category.name}"
 	}
 }

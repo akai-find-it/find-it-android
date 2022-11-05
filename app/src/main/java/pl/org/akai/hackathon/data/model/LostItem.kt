@@ -11,7 +11,7 @@ data class LostItem(
 	@Json(name = "found_at")
 	val foundAt: LocalDate,
 	val category: Category,
-	val founder: String,
+	val founder: UserBase,
 	@Json(name = "created_at")
 	val createdAt: ZonedDateTime,
 )

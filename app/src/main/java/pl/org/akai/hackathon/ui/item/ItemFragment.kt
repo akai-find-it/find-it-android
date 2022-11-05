@@ -30,7 +30,7 @@ class ItemFragment : BaseFragment<ItemFragmentBinding>(ItemFragmentBinding::infl
 		vm.data.observe(viewLifecycleOwner) {
 			it ?: return@observe
 			b.dateText.text = "{cmd-calendar} Znaleziono dnia ${it.foundAt.format(DateTimeFormatter.ISO_DATE)}"
-			b.founderText.text = "{cmd-account} ${it.founder}"
+			b.founderText.text = "{cmd-account} ${it.founder.firstName} ${it.founder.lastName}"
 		}
 	}
 }

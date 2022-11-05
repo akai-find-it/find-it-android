@@ -15,3 +15,12 @@ data class User(
 	@Json(name = "created_at")
 	val createdAt: ZonedDateTime,
 )
+
+data class UserBase(
+	val id: Int,
+	val email: String,
+	@Json(name = "first_name")
+	val firstName: String,
+	@Json(name = "last_name")
+	val lastName: String,
+)

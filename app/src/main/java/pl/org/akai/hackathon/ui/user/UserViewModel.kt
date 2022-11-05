@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.data.api.ApiService
 import pl.org.akai.hackathon.data.model.LoginData
 import pl.org.akai.hackathon.data.model.User
+import pl.org.akai.hackathon.data.model.UserBase
 import pl.org.akai.hackathon.ui.base.BaseViewModel
 import javax.inject.Inject
 
@@ -16,13 +17,23 @@ class UserViewModel @Inject constructor(
 	private val apiService: ApiService,
 ) : BaseViewModel() {
 
-	val user = MutableLiveData<User?>(null)
+	val user = MutableLiveData<UserBase?>(null)
+	val token = MutableLiveData<String?>(null)
 
-	fun loadUser(token: String) = viewModelScope.launch(Dispatchers.IO) {
+	var email = ""
+	var password = ""
 
+	fun loadUser() = viewModelScope.launch(Dispatchers.IO) {
+		user.postValue(apiService.getMe())
 	}
 
-	fun login(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
-		val data = apiService.login(LoginData(email, password))
+	fun login() {
+		viewModelScope.launch(Dispatchers.IO) {
+			try {
+				val data = apiService.login(LoginData(email, password))
+				token.postValue(data.access)
+				loadUser()
+			} catch (e: Exception) {}
+		}
 	}
 }
