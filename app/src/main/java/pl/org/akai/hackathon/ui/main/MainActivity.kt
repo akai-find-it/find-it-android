@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 		}
 
 		vm.title.observe(this) {
-			b.toolbar.title = it
+//			b.toolbar.title = it
 		}
 	}
 

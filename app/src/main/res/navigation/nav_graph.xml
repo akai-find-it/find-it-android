@@ -7,7 +7,7 @@
 	<fragment
 		android:id="@+id/lostListFragment"
 		android:name="pl.org.akai.hackathon.ui.lost.LostListFragment"
-		android:label="LostListFragment" >
+		android:label="" >
 		<action
 			android:id="@+id/action_lostListFragment_to_itemFragment"
 			app:destination="@id/itemFragment" />
@@ -15,7 +15,7 @@
 	<fragment
 		android:id="@+id/addFragment"
 		android:name="pl.org.akai.hackathon.ui.add.AddFragment"
-		android:label="AddFragment">
+		android:label="">
 		<action
 			android:id="@+id/action_addFragment_to_addAnswerFragment"
 			app:destination="@id/addAnswerFragment" />
@@ -23,7 +23,7 @@
 	<fragment
 		android:id="@+id/addAnswerFragment"
 		android:name="pl.org.akai.hackathon.ui.add.AddAnswerFragment"
-		android:label="AddAnswerFragment">
+		android:label="">
 		<argument
 			android:name="name"
 			app:argType="string" />
@@ -40,11 +40,11 @@
 	<fragment
 		android:id="@+id/userFragment"
 		android:name="pl.org.akai.hackathon.ui.user.UserFragment"
-		android:label="UserFragment" />
+		android:label="" />
 	<fragment
 		android:id="@+id/itemFragment"
 		android:name="pl.org.akai.hackathon.ui.item.ItemFragment"
-		android:label="ItemFragment">
+		android:label="">
 		<argument
 			android:name="id"
 			app:argType="integer" />
