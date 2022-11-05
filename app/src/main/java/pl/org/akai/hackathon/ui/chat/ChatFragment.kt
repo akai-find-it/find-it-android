@@ -42,6 +42,7 @@ class ChatFragment : BaseFragment<ChatFragmentBinding>(ChatFragmentBinding::infl
 					vm.sendMessage(args.userId, message)
 				}
 				b.chatView.send(message.toMessage(me, you))
+				b.chatView.inputText = ""
 			}
 		}
 

@@ -15,5 +15,6 @@ class ChatViewModel @Inject constructor(
 
 	suspend fun sendMessage(userId: Int, message: ChatMessage) {
 		apiService.chatSend(userId, message)
+		appDb.chatDao().insert(message)
 	}
 }
