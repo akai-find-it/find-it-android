@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">Hackathon</string>
+	<string name="app_name">FindIt</string>
 	<string name="not_logged_in">Niezalogowany</string>
 	<string name="add_answer_found">Dodaj pytania do zguby</string>
 	<string name="add_answer_lost">Odpowiedz na pytania weryfikacyjne</string>
