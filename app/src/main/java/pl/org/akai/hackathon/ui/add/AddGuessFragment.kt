@@ -33,7 +33,7 @@ class AddGuessFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragmen
 
 		vm.navigateBack.observe(viewLifecycleOwner) {
 			if (it == true) {
-				findNavController().navigate(AddAnswerFragmentDirections.actionAddAnswerFragmentToLostListFragment())
+				findNavController().navigate(AddGuessFragmentDirections.actionAddGuessFragmentToLostListFragment())
 				vm.endNavigateBack()
 			}
 		}
