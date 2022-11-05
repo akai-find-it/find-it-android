@@ -14,9 +14,10 @@ import javax.inject.Inject
 class AddAnswerViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Pair<Question, AddModel.Answer>>>(
 	emptyList()
 ) {
+	var categoryId = 0
 
 	override suspend fun loadDataImpl(): List<Pair<Question, AddModel.Answer>> =
-		apiService.getQuestionList().map { Pair(it, AddModel.Answer(it.id, "")) }
+		apiService.getQuestionList(categoryId).map { Pair(it, AddModel.Answer(it.id, "")) }
 
 	fun add(name: String, description: String, category: Int, date: Long) {
 		viewModelScope.launch {

@@ -23,6 +23,7 @@ class AddAnswerFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragme
 		val adapter = AddAnswerAdapter()
 		b.list.adapter = adapter
 		b.list.layoutManager = LinearLayoutManager(context)
+		vm.categoryId = args.category
 
 		vm.data.observe(viewLifecycleOwner) {
 			adapter.submitList(it)

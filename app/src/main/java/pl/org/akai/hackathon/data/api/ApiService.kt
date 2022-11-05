@@ -17,13 +17,16 @@ interface ApiService {
 		pageSize: Int = 10,
 	): ApiList<LostItem>
 
-	@GET("api/v1/category")
+	@GET("api/v1/categories")
 	suspend fun getCategoryList(): List<Category>
 
-	@GET("api/v1/questions")
-	suspend fun getQuestionList(): List<Question>
+	@GET("api/v1/categories/{id}/questions")
+	suspend fun getQuestionList(
+		@Path("id")
+		id: Int,
+	): List<Question>
 
-	@POST("api/v1/lost-items/new/")
+	@POST("api/v1/lost-items/new")
 	suspend fun addLostItem(
 		@Body
 		addModel: AddModel,
@@ -31,7 +34,8 @@ interface ApiService {
 
 	@GET("api/v1/lost-items/{id}")
 	suspend fun getLostItem(
-		@Path("id") id: Int,
+		@Path("id")
+		id: Int,
 	): LostItem
 
 	@POST("users/jwt/")
