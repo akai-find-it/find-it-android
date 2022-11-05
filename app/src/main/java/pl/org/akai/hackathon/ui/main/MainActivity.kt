@@ -52,6 +52,16 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 			}
 		}
 
+		b.toolbar.menu.forEach {
+			val icon: IIcon = when (it.itemId) {
+				R.id.filter -> CommunityMaterial.Icon2.cmd_filter_outline
+				else -> CommunityMaterial.Icon2.cmd_help
+			}
+			it.icon = IconicsDrawable(this, icon).apply {
+				sizeDp = 24
+			}
+		}
+
 		vm.title.observe(this) {
 //			b.toolbar.title = it
 		}
