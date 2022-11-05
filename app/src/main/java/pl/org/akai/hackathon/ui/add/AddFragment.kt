@@ -3,8 +3,11 @@ package pl.org.akai.hackathon.ui.add
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.databinding.AddFragmentBinding
 import pl.org.akai.hackathon.ext.toISODate
 import pl.org.akai.hackathon.ui.base.BaseFragment
@@ -25,6 +28,9 @@ class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate
 				.build()
 		datePicker.addOnPositiveButtonClickListener {
 			b.date.setText(datePicker.selection!!.toISODate()) //always date selected because setSelection()
+		}
+		lifecycleScope.launch(Dispatchers.IO) {
+			vm.loadData()
 		}
 
 		b.date.setOnClickListener {

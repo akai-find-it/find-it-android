@@ -1,17 +1,24 @@
 package pl.org.akai.hackathon.ui.add
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import pl.org.akai.hackathon.ui.base.BaseViewModel
+import androidx.lifecycle.Transformations
+import dagger.hilt.android.lifecycle.HiltViewModel
+import pl.org.akai.hackathon.data.api.ApiService
+import pl.org.akai.hackathon.data.model.Category
+import pl.org.akai.hackathon.ui.base.DataViewModel
+import javax.inject.Inject
 
-class AddViewModel : BaseViewModel() {
+@HiltViewModel
+class AddViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Category>>(
+	emptyList()
+) {
 
-	private var _list: MutableLiveData<Array<String>> = MutableLiveData(
-		arrayOf(
-			"Elektronika",
-			"Ubrania"
-		)
-	)
+	private var _list: LiveData<Array<String>> = Transformations.map(data) {
+		it.map { it.name }.toTypedArray()
+	}
 	val list: LiveData<Array<String>>
 		get() = _list
+
+	override suspend fun loadDataImpl(): List<Category> = apiService.getCategoryList()
+
 }

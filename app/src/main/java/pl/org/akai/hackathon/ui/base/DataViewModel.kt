@@ -2,9 +2,11 @@ package pl.org.akai.hackathon.ui.base
 
 import androidx.lifecycle.MutableLiveData
 
-abstract class DataViewModel<T> : BaseViewModel() {
+abstract class DataViewModel<T>(
+	default: T
+) : BaseViewModel() {
 
-	val data = MutableLiveData<T>()
+	val data = MutableLiveData(default)
 	val isLoading = MutableLiveData(true)
 	val error = MutableLiveData<Throwable>()
 
