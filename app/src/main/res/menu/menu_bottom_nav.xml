@@ -2,10 +2,10 @@
 <menu
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
-		android:id="@+id/menu_one"
+		android:id="@+id/lostListFragment"
 		android:title="@string/app_name" /> <!--TODO: Change title-->
 	<item
-		android:id="@+id/menu_two"
+		android:id="@+id/addFragment"
 		android:title="@string/app_name" />
 	<item
 		android:id="@+id/menu_three"

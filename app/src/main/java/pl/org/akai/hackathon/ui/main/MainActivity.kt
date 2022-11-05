@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
 		b.bottomNav.menu.forEach {
 			val icon: IIcon = when (it.itemId) {
-				R.id.menu_one -> CommunityMaterial.Icon.cmd_account_search_outline
-				R.id.menu_two -> CommunityMaterial.Icon.cmd_account_heart_outline
+				R.id.lostListFragment -> CommunityMaterial.Icon.cmd_account_search_outline
+				R.id.addFragment -> CommunityMaterial.Icon.cmd_account_heart_outline
 				R.id.menu_three -> CommunityMaterial.Icon.cmd_account_circle_outline
 				else -> CommunityMaterial.Icon2.cmd_help
 			}

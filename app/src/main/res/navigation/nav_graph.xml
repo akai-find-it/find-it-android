@@ -8,4 +8,8 @@
 		android:id="@+id/lostListFragment"
 		android:name="pl.org.akai.hackathon.ui.lost.LostListFragment"
 		android:label="LostListFragment" />
+	<fragment
+		android:id="@+id/addFragment"
+		android:name="pl.org.akai.hackathon.ui.add.AddFragment"
+		android:label="AddFragment" />
 </navigation>

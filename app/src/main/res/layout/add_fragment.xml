@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="model"
+			type="pl.org.akai.hackathon.data.model.AddModel" />
+
+		<variable
+			name="vm"
+			type="pl.org.akai.hackathon.ui.add.AddViewModel" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context=".ui.add.AddFragment">
+
+
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="20dp"
+			android:text="Dodaj zgubę"
+			android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<com.google.android.material.card.MaterialCardView
+			style="?attr/materialCardViewElevatedStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/textView">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				android:orientation="vertical">
+
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:hint="Nazwa przedmiotu"
+					app:helperText="np. Bluza Gucci lub Komórka Xiaomi Redmi mi 6"
+					app:helperTextEnabled="true">
+
+					<com.google.android.material.textfield.TextInputEditText
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="@={model.name}" />
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+					style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:hint="Kategoria">
+
+					<com.google.android.material.textfield.MaterialAutoCompleteTextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:inputType="none"
+						app:simpleItems="@{vm.list}" />
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:hint="Opis przedmiotu"
+					app:helperText="Krótko opisz przedmiot bez szczegółów, aby później zidentyfikować szukającego"
+					app:helperTextEnabled="true">
+
+					<com.google.android.material.textfield.TextInputEditText
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:minHeight="100dp"
+						android:text="@={model.description}" />
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.textfield.TextInputLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="16dp"
+					android:hint="Data"
+					app:helperText="Data znalezienia przedmiotu"
+					app:helperTextEnabled="true"
+					app:startIconDrawable="@drawable/ic_baseline_calendar">
+
+					<com.google.android.material.textfield.TextInputEditText
+						android:id="@+id/date"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:clickable="false"
+						android:focusable="false" />
+
+				</com.google.android.material.textfield.TextInputLayout>
+
+				<com.google.android.material.button.MaterialButton
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginTop="16dp"
+					android:text="Dodaj" />
+			</LinearLayout>
+		</com.google.android.material.card.MaterialCardView>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
