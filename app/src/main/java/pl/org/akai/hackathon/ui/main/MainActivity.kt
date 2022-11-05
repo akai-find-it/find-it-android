@@ -3,7 +3,6 @@ package pl.org.akai.hackathon.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -43,9 +42,9 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
 		b.bottomNav.menu.forEach {
 			val icon: IIcon = when (it.itemId) {
-				R.id.lostListFragment -> CommunityMaterial.Icon.cmd_account_search_outline
-				R.id.addFragment -> CommunityMaterial.Icon.cmd_account_heart_outline
-				R.id.userFragment -> CommunityMaterial.Icon.cmd_account_circle_outline
+				R.id.lostListFragment -> CommunityMaterial.Icon.cmd_clipboard_list
+				R.id.addFragment -> CommunityMaterial.Icon.cmd_comment_plus
+				R.id.userFragment -> CommunityMaterial.Icon.cmd_account_heart_outline
 				else -> CommunityMaterial.Icon2.cmd_help
 			}
 			it.icon = IconicsDrawable(this, icon).apply {

@@ -3,11 +3,11 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
 		android:id="@+id/lostListFragment"
-		android:title="@string/app_name" /> <!--TODO: Change title-->
+		android:title="Lista" />
 	<item
 		android:id="@+id/addFragment"
-		android:title="@string/app_name" />
+		android:title="Dodaj" />
 	<item
 		android:id="@+id/userFragment"
-		android:title="@string/app_name" />
+		android:title="Ty" />
 </menu>
