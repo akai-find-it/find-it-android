@@ -19,4 +19,10 @@ class ItemViewModel @Inject constructor(
 	override suspend fun loadDataImpl(): LostItem {
 		return apiService.getLostItem(id)
 	}
+
+	fun onClaimClick() {
+		val item = data.value ?: return
+
+		navigate(ItemFragmentDirections.actionItemFragmentToAddGuessFragment(item.id))
+	}
 }

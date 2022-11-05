@@ -4,19 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.data.api.ApiService
 import pl.org.akai.hackathon.data.model.AddModel
 import pl.org.akai.hackathon.data.model.Question
 import pl.org.akai.hackathon.ui.base.DataViewModel
-import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class AddAnswerViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Pair<Question, AddModel.Answer>>>(
+class AddGuessViewModel @Inject constructor(private var apiService: ApiService) : DataViewModel<List<Pair<Pair<Int, Question>, AddModel.Answer>>>(
 	emptyList()
 ) {
-	var categoryId = 0
+	var itemId = 0
 	private var _navigateBack: MutableLiveData<Boolean?> = MutableLiveData(false)
 	val navigateBack: LiveData<Boolean?>
 		get() = _navigateBack
@@ -25,20 +25,12 @@ class AddAnswerViewModel @Inject constructor(private var apiService: ApiService)
 		_navigateBack.value = null
 	}
 
-	override suspend fun loadDataImpl(): List<Pair<Question, AddModel.Answer>> =
-		apiService.getQuestionList(categoryId).map { Pair(it, AddModel.Answer(it.id, "")) }
+	override suspend fun loadDataImpl(): List<Pair<Pair<Int, Question>, AddModel.Answer>> =
+		apiService.getAnsweredList(itemId).map { Pair(it.answerId to it.question, AddModel.Answer(it.question.id, "")) }
 
-	fun add(name: String, description: String, category: Int, date: Long) {
-		viewModelScope.launch {
-			val model = AddModel(
-				name,
-				category,
-				description,
-				LocalDate.ofEpochDay(date),
-				data.value?.map { it.second }?.toMutableList() ?: mutableListOf()
-			)
-			apiService.addLostItem(model)
-			_navigateBack.value = true
+	fun add(id: Int) {
+		viewModelScope.launch(Dispatchers.IO) {
+			apiService.addGuesses(id, data.value?.map { it.second } ?: mutableListOf())
 		}
 	}
 }

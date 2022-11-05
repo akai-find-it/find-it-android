@@ -14,21 +14,21 @@ import pl.org.akai.hackathon.databinding.AddAnswerFragmentBinding
 import pl.org.akai.hackathon.ui.base.BaseFragment
 
 @AndroidEntryPoint
-class AddAnswerFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragmentBinding::inflate) {
+class AddGuessFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragmentBinding::inflate) {
 
-	override val vm: AddAnswerViewModel by viewModels()
-	val args by navArgs<AddAnswerFragmentArgs>()
+	override val vm: AddGuessViewModel by viewModels()
+	val args by navArgs<AddGuessFragmentArgs>()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		val adapter = AddAnswerAdapter()
 		b.list.adapter = adapter
 		b.list.layoutManager = LinearLayoutManager(context)
-		b.guess = false
-		vm.categoryId = args.category
+		b.guess = true
+		vm.itemId = args.itemId
 
 		vm.data.observe(viewLifecycleOwner) {
-			adapter.submitList(it)
+			adapter.submitList(it.map { it.first.second to it.second })
 		}
 
 		vm.navigateBack.observe(viewLifecycleOwner) {
@@ -40,7 +40,7 @@ class AddAnswerFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragme
 
 		b.addButton.setOnClickListener {
 			with(args) {
-				vm.add(name, description, category, date)
+				vm.add(itemId)
 			}
 		}
 

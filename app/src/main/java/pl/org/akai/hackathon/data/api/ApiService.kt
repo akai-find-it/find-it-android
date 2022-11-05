@@ -26,10 +26,28 @@ interface ApiService {
 		id: Int,
 	): List<Question>
 
+	@GET("api/v1/lost-items/{id}/answered")
+	suspend fun getAnsweredList(
+		@Path("id")
+		itemId: Int,
+	): List<Answered>
+
 	@POST("api/v1/lost-items/new")
 	suspend fun addLostItem(
 		@Body
 		addModel: AddModel,
+	)
+
+	@POST("api/v1/lost-items/{id}/answers")
+	suspend fun addAnswers(
+		@Path("id") itemId: Int,
+		@Body answers: List<AddModel.Answer>,
+	)
+
+	@POST("api/v1/lost-items/{id}/guesses")
+	suspend fun addGuesses(
+		@Path("id") itemId: Int,
+		@Body answers: List<AddModel.Answer>,
 	)
 
 	@GET("api/v1/lost-items/{id}")
@@ -47,7 +65,7 @@ interface ApiService {
 	@GET("users/me/")
 	suspend fun getMe(): UserBase
 
-	@POST("api/v1/notification/")
+	@POST("api/v1/notification/token/")
 	suspend fun sendPushToken(
 		@Body token: TokenRequest,
 	)
