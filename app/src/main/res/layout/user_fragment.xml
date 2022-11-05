@@ -157,11 +157,20 @@
 
 			<com.google.android.material.button.MaterialButton
 				android:layout_width="match_parent"
+				android:id="@+id/buttono"
 				android:layout_height="wrap_content"
 				android:text="Moje znaleziska"
 				android:layout_margin="24dp"
 				android:isVisible="@{vm.data != null}"
 				app:layout_constraintTop_toBottomOf="@+id/constraint" />
+
+			<com.google.android.material.button.MaterialButton
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Wiadomosci"
+				android:layout_margin="24dp"
+				android:isVisible="@{vm.data != null}"
+				app:layout_constraintTop_toBottomOf="@+id/buttono" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
 		<ProgressBar
