@@ -31,7 +31,7 @@ class AddGuessViewModel @Inject constructor(private var apiService: ApiService) 
 	fun add(id: Int) {
 		viewModelScope.launch(Dispatchers.IO) {
 			apiService.addGuesses(id, data.value?.map { it.second } ?: mutableListOf())
-			_navigateBack.value = true
+			_navigateBack.postValue(true)
 		}
 	}
 }

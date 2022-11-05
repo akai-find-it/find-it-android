@@ -69,7 +69,7 @@ class AddAnswerViewModel @Inject constructor(private var apiService: ApiService)
 					continue
 				apiService.addAnswer(lostItem.id, answer)
 			}
-			_navigateBack.value = true
+			_navigateBack.postValue(true)
 		}
 	}
 }
