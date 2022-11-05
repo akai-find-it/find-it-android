@@ -14,6 +14,8 @@ data class LostItem(
 	val founder: UserBase,
 	@Json(name = "created_at")
 	val createdAt: ZonedDateTime,
+	@Json(name = "image_url")
+	val imageUrl: String?,
 )
 
 data class LostItemBase(
