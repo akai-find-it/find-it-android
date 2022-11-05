@@ -11,7 +11,28 @@
 	<fragment
 		android:id="@+id/addFragment"
 		android:name="pl.org.akai.hackathon.ui.add.AddFragment"
-		android:label="AddFragment" />
+		android:label="AddFragment">
+		<action
+			android:id="@+id/action_addFragment_to_addAnswerFragment"
+			app:destination="@id/addAnswerFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/addAnswerFragment"
+		android:name="pl.org.akai.hackathon.ui.add.AddAnswerFragment"
+		android:label="AddAnswerFragment">
+		<argument
+			android:name="name"
+			app:argType="string" />
+		<argument
+			android:name="category"
+			app:argType="string" />
+		<argument
+			android:name="description"
+			app:argType="string" />
+		<argument
+			android:name="date"
+			app:argType="string" />
+	</fragment>
 	<fragment
 		android:id="@+id/userFragment"
 		android:name="pl.org.akai.hackathon.ui.user.UserFragment"
