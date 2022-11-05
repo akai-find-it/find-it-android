@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import pl.org.akai.hackathon.data.DataAdapters
 import pl.org.akai.hackathon.data.api.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -20,6 +21,7 @@ class NetworkModule {
 	@Provides
 	fun provideMoshi(): Moshi =
 		Moshi.Builder()
+			.add(DataAdapters())
 			.addLast(KotlinJsonAdapterFactory())
 			.build()
 
@@ -33,7 +35,7 @@ class NetworkModule {
 	@Provides
 	fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
 		Retrofit.Builder()
-			.baseUrl("http://10.0.0.13/")
+			.baseUrl("http://10.0.0.13:8000/api/v1/")
 			.client(okHttpClient)
 			.addConverterFactory(MoshiConverterFactory.create(moshi))
 			.build()
