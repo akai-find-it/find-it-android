@@ -1,9 +1,13 @@
 package pl.org.akai.hackathon.data.api
 
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import pl.org.akai.hackathon.data.model.*
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -32,10 +36,19 @@ interface ApiService {
 		itemId: Int,
 	): List<Answered>
 
+	@Multipart
 	@POST("api/v1/lost-items/new")
 	suspend fun addLostItem(
-		@Body
-		addModel: AddModel,
+		@Part("title")
+		title: RequestBody,
+		@Part("category")
+		category: Int,
+		@Part("description")
+		description: RequestBody,
+		@Part("found_at")
+		found_at: RequestBody,
+		@Part
+		image_url: MultipartBody.Part,
 	): LostItemBase
 
 	@POST("api/v1/lost-items/{id}/answers/new")
