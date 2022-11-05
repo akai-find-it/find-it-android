@@ -28,6 +28,6 @@ class LostListViewModel @Inject constructor(
 	}
 
 	fun onItemClicked(item: LostItem) {
-
+		navigate(LostListFragmentDirections.actionLostListFragmentToItemFragment(item.id))
 	}
 }

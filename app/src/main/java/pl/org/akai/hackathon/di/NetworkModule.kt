@@ -35,7 +35,7 @@ class NetworkModule {
 	@Provides
 	fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
 		Retrofit.Builder()
-			.baseUrl("http://10.0.0.13:8000/")
+			.baseUrl("http://akaicode.local/")
 			.client(okHttpClient)
 			.addConverterFactory(MoshiConverterFactory.create(moshi))
 			.build()

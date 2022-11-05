@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="vm"
+			type="pl.org.akai.hackathon.ui.item.ItemViewModel" />
+	</data>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:isVisible="@{!vm.isLoading() &amp;&amp; vm.error == null}">
+
+			<ImageView
+				android:id="@+id/imageView2"
+				android:layout_width="match_parent"
+				android:layout_height="300dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+
+			<TextView
+				android:id="@+id/textView3"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="16dp"
+				android:text="@{vm.data.title}"
+				android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+				app:layout_constraintTop_toBottomOf="@+id/imageView2"
+				tools:layout_editor_absoluteX="16dp"
+				tools:text="Smartfon nokia 3310" />
+
+			<com.mikepenz.iconics.view.IconicsTextView
+				android:id="@+id/dateText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="8dp"
+				android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+				app:layout_constraintTop_toBottomOf="@+id/textView3"
+				tools:layout_editor_absoluteX="16dp"
+				tools:text="[ ] Znaleziono dnia 2022-11-05" />
+
+			<com.mikepenz.iconics.view.IconicsTextView
+				android:id="@+id/founderText"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="8dp"
+				android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+				app:layout_constraintTop_toBottomOf="@+id/dateText"
+				tools:layout_editor_absoluteX="16dp"
+				tools:text="[ ] Paweł Informatyczny" />
+
+			<View
+				android:id="@+id/view"
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginTop="16dp"
+				android:background="#7f7f7f7f"
+				app:layout_constraintTop_toBottomOf="@+id/founderText" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:layout_marginTop="16dp"
+				android:text="@{vm.data.description}"
+				app:layout_constraintTop_toBottomOf="@+id/view"
+				tools:text="Opis przedmiotu idzie\n\ntutaj" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<ProgressBar
+			android:id="@+id/progressBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:isVisible="@{vm.isLoading()}" />
+
+		<LinearLayout
+			android:id="@+id/errorLayout"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:isVisible="@{vm.error != null}"
+			android:orientation="vertical">
+
+			<com.mikepenz.iconics.view.IconicsImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				app:iiv_color="?android:textColorPrimary"
+				app:iiv_icon="cmd-cloud-off-outline"
+				app:iiv_size="64dp" />
+
+			<Button
+				style="@style/Widget.Material3.Button.OutlinedButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:onClick="@{() -> vm.onRefresh()}"
+				android:text="Spróbuj ponownie" />
+		</LinearLayout>
+	</FrameLayout>
+</layout>

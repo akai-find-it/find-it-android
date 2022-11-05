@@ -1,13 +1,11 @@
 package pl.org.akai.hackathon.data.api
 
-import pl.org.akai.hackathon.data.model.AddModel
-import pl.org.akai.hackathon.data.model.Category
-import pl.org.akai.hackathon.data.model.LoginData
-import pl.org.akai.hackathon.data.model.LostItem
-import pl.org.akai.hackathon.data.model.Question
+import pl.org.akai.hackathon.data.model.*
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -32,9 +30,19 @@ interface ApiService {
 		addModel: AddModel,
 	)
 
+	@GET("api/v1/lost-items/{id}")
+	suspend fun getLostItem(
+		@Path("id") id: Int,
+	): LostItem
+
 	@POST("users/jwt/")
 	suspend fun login(
 		@Body
 		data: LoginData,
 	): LoginData.Response
+
+	@POST("api/v1/notification/")
+	suspend fun sendPushToken(
+		@Body token: TokenRequest,
+	)
 }
