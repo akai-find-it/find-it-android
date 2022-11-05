@@ -49,7 +49,7 @@ class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate
 			val category = vm.data.value?.firstOrNull { it.name == b.category.text.toString() }
 			findNavController().navigate(
 				AddFragmentDirections.actionAddFragmentToAddAnswerFragment(
-					model.name,
+					model.title,
 					category?.id ?: 0,
 					model.description,
 					model.foundAt?.toEpochDay() ?: 0

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +28,13 @@ class AddAnswerFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragme
 
 		vm.data.observe(viewLifecycleOwner) {
 			adapter.submitList(it)
+		}
+
+		vm.navigateBack.observe(viewLifecycleOwner) {
+			if (it == true) {
+				findNavController().navigate(AddAnswerFragmentDirections.actionAddAnswerFragmentToLostListFragment())
+				vm.endNavigateBack()
+			}
 		}
 
 		b.addButton.setOnClickListener {

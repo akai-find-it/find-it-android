@@ -57,7 +57,7 @@
 					<com.google.android.material.textfield.TextInputEditText
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:text="@={model.name}" />
+						android:text="@={model.title}" />
 
 				</com.google.android.material.textfield.TextInputLayout>
 

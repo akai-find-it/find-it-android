@@ -4,12 +4,12 @@ import com.squareup.moshi.Json
 import java.time.LocalDate
 
 data class AddModel(
-	var name: String = "",
-	var category: Category? = null,
+	var title: String = "",
+	var category: Int = 0,
 	var description: String = "",
 
 	@Json(name = "found_at")
-	var foundAt: LocalDate? = null,
+	var foundAt: LocalDate = LocalDate.now(),
 
 	val answers: MutableList<Answer> = mutableListOf(),
 ) {

@@ -1,5 +1,7 @@
 package pl.org.akai.hackathon.ui.add
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,21 +17,28 @@ class AddAnswerViewModel @Inject constructor(private var apiService: ApiService)
 	emptyList()
 ) {
 	var categoryId = 0
+	private var _navigateBack: MutableLiveData<Boolean?> = MutableLiveData(false)
+	val navigateBack: LiveData<Boolean?>
+		get() = _navigateBack
+
+	fun endNavigateBack() {
+		_navigateBack.value = null
+	}
 
 	override suspend fun loadDataImpl(): List<Pair<Question, AddModel.Answer>> =
 		apiService.getQuestionList(categoryId).map { Pair(it, AddModel.Answer(it.id, "")) }
 
 	fun add(name: String, description: String, category: Int, date: Long) {
 		viewModelScope.launch {
-			val categories = apiService.getCategoryList()
 			val model = AddModel(
 				name,
-				categories.first { it.id == category },
+				category,
 				description,
 				LocalDate.ofEpochDay(date),
 				data.value?.map { it.second }?.toMutableList() ?: mutableListOf()
 			)
 			apiService.addLostItem(model)
+			_navigateBack.value = true
 		}
 	}
 }

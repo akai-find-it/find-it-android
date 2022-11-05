@@ -36,6 +36,10 @@
 		<argument
 			android:name="date"
 			app:argType="long" />
+		<action
+			android:id="@+id/action_addAnswerFragment_to_lostListFragment"
+			app:destination="@id/lostListFragment"
+			app:popUpTo="@id/lostListFragment" />
 	</fragment>
 	<fragment
 		android:id="@+id/userFragment"
