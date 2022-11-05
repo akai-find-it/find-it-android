@@ -1,6 +1,6 @@
 package pl.org.akai.hackathon.data.api
 
-open class ApiList<T>(
+data class ApiList<T>(
 	val data: List<T>,
 	val paging: Paging,
 ) {

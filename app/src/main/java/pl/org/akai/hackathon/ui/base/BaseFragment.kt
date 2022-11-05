@@ -12,19 +12,19 @@ import androidx.viewbinding.ViewBinding
 import pl.org.akai.hackathon.ui.main.MainViewModel
 
 abstract class BaseFragment<B : ViewBinding>(
-	private val inflater: (inflater: LayoutInflater, parent: ViewGroup?) -> B,
+	private val inflater: (LayoutInflater, ViewGroup?, Boolean) -> B,
 ) : Fragment() {
 
 	protected lateinit var b: B
 	protected abstract val vm: BaseViewModel
 	protected val activity: MainViewModel by activityViewModels()
 
-	override fun onCreateView(
+	final override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?,
-	): View? {
-		b = this.inflater(inflater, container)
+	): View {
+		b = this.inflater(inflater, container, false)
 		if (b is ViewDataBinding)
 			(b as ViewDataBinding).lifecycleOwner = viewLifecycleOwner
 		return b.root

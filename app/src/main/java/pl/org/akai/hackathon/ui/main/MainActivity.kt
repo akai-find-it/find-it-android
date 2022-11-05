@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 				sizeDp = 24
 			}
 		}
+
+		vm.title.observe(this) {
+			b.toolbar.title = it
+		}
 	}
 
 	override fun onSupportNavigateUp(): Boolean {

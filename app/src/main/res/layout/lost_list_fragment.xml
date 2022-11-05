@@ -1,7 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<layout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+	<data>
+
+		<variable
+			name="vm"
+			type="pl.org.akai.hackathon.ui.lost.LostListViewModel" />
+	</data>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" />
+
+		<ProgressBar
+			android:id="@+id/progressBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center" />
+
+		<LinearLayout
+			android:id="@+id/errorLayout"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical"
+			android:visibility="gone">
+
+			<com.mikepenz.iconics.view.IconicsImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				app:iiv_color="?android:textColorPrimary"
+				app:iiv_icon="cmd-cloud-off-outline"
+				app:iiv_size="64dp" />
+
+			<Button
+				style="@style/Widget.Material3.Button.OutlinedButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="24dp"
+				android:onClick="@{() -> vm.onRefresh()}"
+				android:text="Spróbuj ponownie" />
+		</LinearLayout>
+	</FrameLayout>
+</layout>

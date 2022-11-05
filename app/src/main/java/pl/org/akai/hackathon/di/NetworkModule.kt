@@ -7,6 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import pl.org.akai.hackathon.data.api.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -30,17 +31,16 @@ class NetworkModule {
 
 	@Singleton
 	@Provides
-	fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
+	fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
 		Retrofit.Builder()
-			.baseUrl("10.0.0.13")
+			.baseUrl("http://10.0.0.13/")
 			.client(okHttpClient)
-			.addConverterFactory(MoshiConverterFactory.create())
+			.addConverterFactory(MoshiConverterFactory.create(moshi))
 			.build()
 
-//	@Singleton
-//	@Provides
-//	fun provideFindItApi(retrofit: Retrofit): FindItApi {
-//		return retrofit.create(FindItApi::class.java)
-//	}
+	@Singleton
+	@Provides
+	fun provideFindItApi(retrofit: Retrofit): ApiService =
+		retrofit.create(ApiService::class.java)
 
 }
