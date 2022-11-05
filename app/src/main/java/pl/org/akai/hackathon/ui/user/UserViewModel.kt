@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.data.api.ApiService
+import pl.org.akai.hackathon.data.model.LoginData
 import pl.org.akai.hackathon.data.model.User
 import pl.org.akai.hackathon.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -22,6 +23,6 @@ class UserViewModel @Inject constructor(
 	}
 
 	fun login(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
-
+		val data = apiService.login(LoginData(email, password))
 	}
 }
