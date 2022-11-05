@@ -1,7 +1,6 @@
 package pl.org.akai.hackathon.data.api
 
 import pl.org.akai.hackathon.data.model.*
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -24,7 +23,7 @@ interface ApiService {
 	@GET("api/v1/questions")
 	suspend fun getQuestionList(): List<Question>
 
-	@POST("api/v1/lost-items/")
+	@POST("api/v1/lost-items/new/")
 	suspend fun addLostItem(
 		@Body
 		addModel: AddModel,

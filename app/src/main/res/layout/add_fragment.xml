@@ -66,10 +66,10 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="16dp"
-					android:id="@+id/category"
 					android:hint="Kategoria">
 
 					<com.google.android.material.textfield.MaterialAutoCompleteTextView
+						android:id="@+id/category"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:inputType="none"

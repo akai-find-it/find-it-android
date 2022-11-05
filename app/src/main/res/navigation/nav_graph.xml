@@ -29,13 +29,13 @@
 			app:argType="string" />
 		<argument
 			android:name="category"
-			app:argType="string" />
+			app:argType="integer" />
 		<argument
 			android:name="description"
 			app:argType="string" />
 		<argument
 			android:name="date"
-			app:argType="string" />
+			app:argType="long" />
 	</fragment>
 	<fragment
 		android:id="@+id/userFragment"

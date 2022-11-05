@@ -14,7 +14,6 @@ import pl.org.akai.hackathon.databinding.AddFragmentBinding
 import pl.org.akai.hackathon.ext.toISODate
 import pl.org.akai.hackathon.ext.toLocalDate
 import pl.org.akai.hackathon.ui.base.BaseFragment
-import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate) {
@@ -44,14 +43,13 @@ class AddFragment : BaseFragment<AddFragmentBinding>(AddFragmentBinding::inflate
 			datePicker.show(parentFragmentManager, "DatePicker")
 		}
 		b.addButton.setOnClickListener {
+			val category = vm.data.value?.firstOrNull { it.name == b.category.text.toString() }
 			findNavController().navigate(
 				AddFragmentDirections.actionAddFragmentToAddAnswerFragment(
 					model.name,
-					b.category.editText?.text.toString(),
+					category?.id ?: 0,
 					model.description,
-					model.foundAt?.format(
-						DateTimeFormatter.ISO_DATE
-					) ?: ""  //TODO
+					model.foundAt?.toEpochDay() ?: 0
 				)
 			)
 		}

@@ -28,6 +28,12 @@ class AddAnswerFragment : BaseFragment<AddAnswerFragmentBinding>(AddAnswerFragme
 			adapter.submitList(it)
 		}
 
+		b.addButton.setOnClickListener {
+			with(args) {
+				vm.add(name, description, category, date)
+			}
+		}
+
 		lifecycleScope.launch(Dispatchers.IO) {
 			vm.loadData()
 		}

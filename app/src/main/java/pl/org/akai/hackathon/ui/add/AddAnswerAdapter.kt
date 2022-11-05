@@ -13,7 +13,7 @@ import pl.org.akai.hackathon.data.model.Question
 import pl.org.akai.hackathon.databinding.AddAnswerItemBinding
 
 class AddAnswerAdapter :
-	ListAdapter<Question, AddAnswerAdapter.ViewHolder>(QuestionDiffCallback()) {
+	ListAdapter<Pair<Question, AddModel.Answer>, AddAnswerAdapter.ViewHolder>(QuestionDiffCallback()) {
 
 	class ViewHolder(val binding: AddAnswerItemBinding) :
 		RecyclerView.ViewHolder(binding.root) {
@@ -35,18 +35,24 @@ class AddAnswerAdapter :
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		holder.binding.also {
-			it.question = getItem(position)
-			it.answer = AddModel.Answer(getItem(position).id, "")
+			it.question = getItem(position).first
+			it.answer = getItem(position).second
 		}
 	}
 }
 
-class QuestionDiffCallback : DiffUtil.ItemCallback<Question>() {
-	override fun areItemsTheSame(oldItem: Question, newItem: Question): Boolean {
-		return oldItem.id == newItem.id
+class QuestionDiffCallback : DiffUtil.ItemCallback<Pair<Question, AddModel.Answer>>() {
+	override fun areItemsTheSame(
+		oldItem: Pair<Question, AddModel.Answer>,
+		newItem: Pair<Question, AddModel.Answer>,
+	): Boolean {
+		return oldItem.first.id == newItem.first.id
 	}
 
-	override fun areContentsTheSame(oldItem: Question, newItem: Question): Boolean {
+	override fun areContentsTheSame(
+		oldItem: Pair<Question, AddModel.Answer>,
+		newItem: Pair<Question, AddModel.Answer>,
+	): Boolean {
 		return oldItem == newItem
 	}
 
