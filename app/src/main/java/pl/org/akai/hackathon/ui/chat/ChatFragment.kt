@@ -46,7 +46,11 @@ class ChatFragment : BaseFragment<ChatFragmentBinding>(ChatFragmentBinding::infl
 			}
 		}
 
+		var ok = false
 		vm.appDb.chatDao().getByPersonId(args.userId).observe(viewLifecycleOwner) {
+			if (ok)
+				return@observe
+			ok = true
 			for (message in it) {
 				if (message.isSent) {
 					b.chatView.send(message.toMessage(me, you))
