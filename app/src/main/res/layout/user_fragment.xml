@@ -36,31 +36,24 @@
 				android:layout_width="128dp"
 				android:layout_height="128dp"
 				android:layout_marginTop="32dp"
+				app:shapeAppearanceOverlay="@style/circleImageView"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toBottomOf="@+id/textView"
 				app:srcCompat="@drawable/profile" />
 
-			<TextView
-				android:id="@+id/textView2"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="16dp"
-				android:text="@{vm.data == null ? @string/not_logged_in : vm.data.firstName}"
-				android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/imageView"
-				tools:text="Piotr Informatyczny" />
-
 			<LinearLayout
+				android:id="@+id/linearLayout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_marginHorizontal="16dp"
-				android:layout_marginTop="32dp"
 				android:isVisible="@{vm.data == null}"
 				android:orientation="vertical"
-				app:layout_constraintTop_toBottomOf="@+id/textView2">
+				android:layout_marginTop="32dp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/constraint"
+				tools:visibility="invisible">
 
 				<com.google.android.material.textfield.TextInputLayout
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -96,6 +89,69 @@
 					android:onClick="@{() -> vm.login()}"
 					android:text="Zaloguj się" />
 			</LinearLayout>
+
+			<com.google.android.material.card.MaterialCardView
+				style="?attr/materialCardViewElevatedStyle"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="32dp"
+				android:layout_marginHorizontal="24dp"
+				android:padding="16dp"
+				android:id="@+id/constraint"
+				app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+				<androidx.constraintlayout.widget.ConstraintLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<TextView
+						android:id="@+id/textView2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="10dp"
+						android:text="Nazwa: "
+						android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent"
+						tools:text="Nazwa: " />
+
+					<TextView
+						android:id="@+id/textView3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="10dp"
+						android:text="@{vm.data == null ? @string/not_logged_in : vm.data.firstName+' '+vm.data.lastName}"
+						android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintTop_toTopOf="parent"
+						tools:text="Piotr Informatyczny" />
+
+					<TextView
+						android:id="@+id/textView6"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="E-mail: "
+						android:layout_margin="10dp"
+						android:paddingBottom="10dp"
+						android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/textView2"
+						tools:text="E-mail: " />
+
+					<TextView
+						android:id="@+id/textView4"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_margin="10dp"
+						android:gravity="center"
+						android:text="@{vm.data.email}"
+						android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintTop_toBottomOf="@+id/textView3"
+						tools:text="email@gugiel.kom" />
+				</androidx.constraintlayout.widget.ConstraintLayout>
+			</com.google.android.material.card.MaterialCardView>
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
 		<ProgressBar
@@ -103,7 +159,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
-			android:isVisible="@{vm.isLoading()}" />
+			android:isVisible="@{vm.isLoading()}"
+			tools:visibility="invisible" />
 
 		<LinearLayout
 			android:id="@+id/errorLayout"
@@ -111,7 +168,8 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
 			android:isVisible="@{vm.isError()}"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			tools:visibility="invisible">
 
 			<com.mikepenz.iconics.view.IconicsImageView
 				android:layout_width="wrap_content"
