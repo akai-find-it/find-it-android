@@ -4,6 +4,7 @@ import java.time.ZonedDateTime
 
 data class User(
 	val email: String,
+	val name: String,
 	val isStaff: Boolean,
 	val isSuperuser: Boolean,
 	val isActive: Boolean,

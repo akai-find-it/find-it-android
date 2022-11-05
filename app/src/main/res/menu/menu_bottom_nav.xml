@@ -8,6 +8,6 @@
 		android:id="@+id/addFragment"
 		android:title="@string/app_name" />
 	<item
-		android:id="@+id/menu_three"
+		android:id="@+id/userFragment"
 		android:title="@string/app_name" />
 </menu>
