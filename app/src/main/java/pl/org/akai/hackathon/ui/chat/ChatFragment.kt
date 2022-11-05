@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.github.bassaer.chatmessageview.model.ChatUser
 import com.github.bassaer.chatmessageview.model.Message
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import pl.org.akai.hackathon.R
@@ -16,6 +17,7 @@ import pl.org.akai.hackathon.databinding.ChatFragmentBinding
 import pl.org.akai.hackathon.ui.base.BaseFragment
 import java.util.*
 
+@AndroidEntryPoint
 class ChatFragment : BaseFragment<ChatFragmentBinding>(ChatFragmentBinding::inflate) {
 
 	override val vm: ChatViewModel by viewModels()

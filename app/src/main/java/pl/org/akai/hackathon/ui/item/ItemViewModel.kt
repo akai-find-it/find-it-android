@@ -25,4 +25,10 @@ class ItemViewModel @Inject constructor(
 
 		navigate(ItemFragmentDirections.actionItemFragmentToAddGuessFragment(item.id))
 	}
+
+	fun onMessageClick() {
+		val item = data.value ?: return
+
+		navigate(ItemFragmentDirections.actionItemFragmentToChatFragment(item.founder.id, item.founder.firstName + " " + item.founder.lastName))
+	}
 }

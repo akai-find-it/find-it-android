@@ -25,10 +25,10 @@
 				android:layout_width="match_parent"
 				android:layout_height="300dp"
 				android:scaleType="centerCrop"
+				android:url="@{vm.data.imageUrl}"
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				android:url="@{vm.data.imageUrl}" />
+				app:layout_constraintTop_toTopOf="parent" />
 
 			<TextView
 				android:id="@+id/textView3"
@@ -63,6 +63,17 @@
 				app:layout_constraintTop_toBottomOf="@+id/dateText"
 				tools:layout_editor_absoluteX="16dp"
 				tools:text="[ ] Paweł Informatyczny" />
+
+			<Button
+				style="@style/Widget.Material3.Button.OutlinedButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginHorizontal="16dp"
+				android:onClick="@{() -> vm.onMessageClick()}"
+				android:text="Napisz"
+				app:layout_constraintBottom_toBottomOf="@+id/founderText"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@+id/textView3" />
 
 			<View
 				android:id="@+id/view"
