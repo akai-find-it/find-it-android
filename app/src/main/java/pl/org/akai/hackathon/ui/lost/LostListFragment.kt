@@ -1,13 +1,11 @@
 package pl.org.akai.hackathon.ui.lost
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -32,7 +30,7 @@ class LostListFragment : BaseFragment<LostListFragmentBinding>(LostListFragmentB
 			header = ListLoadStateAdapter(adapter::retry),
 			footer = ListLoadStateAdapter(adapter::retry),
 		)
-		b.list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+//		b.list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 		b.list.layoutManager = LinearLayoutManager(context)
 
 		lifecycleScope.launch {
